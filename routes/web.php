@@ -23,8 +23,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::resource('/mission', 'MissionController');
-
-Route::get("{data?}", function()
-{
-    return View::make("app");
-})->where("data", ".*");
+//
+//Route::get("{data?}", function()
+//{
+//    return View::make("app");
+//})->where("data", ".*");
