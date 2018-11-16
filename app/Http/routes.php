@@ -20,7 +20,7 @@ $api->version('v1',function($api){
   // API
   $api->group(['namespace'=>'App\Http\Controllers'],function($api){
 
-    $api->resource('/mission', 'MissionController');
+    $api->resource('tasks', 'MissionController');
 
     // Protected methods (require auth)
 

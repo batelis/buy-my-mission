@@ -11,18 +11,45 @@
 |
 */
 
+// API Routes come first
+$api = app('Dingo\Api\Routing\Router');
+$api->version('v1',function($api){
+  header('Access-Control-Allow-Origin: http://localhost:4200');
+  header('Access-Control-Allow-Headers: Origin, Content-Type, Authorization');
+  header('Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, PATCH, DELETE');
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
+  // API
+  $api->group(['namespace'=>'App\Http\Controllers'],function($api){
+
+    $api->resource('tasks', 'MissionController');
+
+    // Protected methods (require auth)
 
 
-Route::get('/', function () {
-    return view('welcome');
+  });
+
+  // Public methods
+
+
 });
 
-Auth::routes();
+// Catchall - Displays Ember app
+Route::any('{catchall}',function(){
+  return view('index');
+})->where('catchall', '(.*)');
 
-Route::resource('/mission', 'MissionController');
+//
+//use Illuminate\Support\Facades\Auth;
+//use Illuminate\Support\Facades\Route;
+//
+//
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+//
+//Auth::routes();
+//
+//Route::resource('/mission', 'MissionController');
 //
 //Route::get("{data?}", function()
 //{
